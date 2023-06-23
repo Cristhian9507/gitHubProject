@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand">Perfiles</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="d-flex" id="formMenu" role="search">
+        <input [(ngModel)]="termino" [ngModelOptions]="{standalone: true}" class="form-control me-2" type="search"
+          placeholder="Buscar..." aria-label="Search"><br>
+        <div *ngIf="errorMinlength">
+          El campo debe tener al menos 4 caracteres.
+        </div>
+        <div *ngIf="errorPattern">
+          No se permite la palabra "doublevpartners".
+        </div>
+        <button class="btn btn-outline-primary" (click)="buscar()">Buscar</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-9">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Login</th>
+              <th scope="col">ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="perfilesRes.length==0">
+              <td colspan="7">
+                <div class="text-center">Sin Registros...</div>
+              </td>
+            </tr>
+            <tr *ngFor="let perfil of perfilesRes; let i = index">
+              <td><a href="#" class="button" (click)="irAPerfil(perfil.login, $event)">{{perfil.login}}</a></td>
+              <td>{{perfil.id}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          Score > 30
+        </div>
+        <ul class="list-group list-group-flush">
+          <!-- <li *ngIf="favoritos.length==0" class="list-group-item">Sin favoritos...</li> -->
+          <!-- <li *ngFor="let fav of favoritos" class="list-group-item">Canción: {{fav.nombre_banda}} - {{fav.cancion_id}} -->
+            <!-- Puntuación: {{fav.ranking}}/5</li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

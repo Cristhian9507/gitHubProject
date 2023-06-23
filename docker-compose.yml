@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  my-music-front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my-music-front
+    restart: always
+    ports:
+      - "80:80"
